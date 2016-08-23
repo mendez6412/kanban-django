@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Board, Status, Task
+from django.contrib.auth.models import User
 
 
 class StatusSerializer(serializers.ModelSerializer):
@@ -14,6 +15,12 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ('id', 'user_story', 'weight', 'board', 'status')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email')
 
 
 class BoardSerializer(serializers.ModelSerializer):
