@@ -1,3 +1,1 @@
 # kanban-django
-
-Wassap
