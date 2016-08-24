@@ -54,4 +54,9 @@ def register(request):
 
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
-    queryset = Board.objects.all().order_by('name')
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = Board.objects.filter(users=user)
+
+        return queryset
