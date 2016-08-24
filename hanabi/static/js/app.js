@@ -40,7 +40,7 @@ var $blocked = $('#blocked')
 var $done = $('#done')
 
 
-$.ajax({ url: '/api/board' }).done(function(response) {
+$.ajax({ url: '/api/board/1' }).done(function(response) {
     onBoardFetched(getTodos(response), $todo)
     onBoardFetched(getDoings(response), $doing)
     onBoardFetched(getBlockings(response), $blocked)
@@ -88,12 +88,12 @@ $.ajax({ url: '/api/board' }).done(function(response) {
 // ======================================================================
 //               DELETE a task on a card
 
-var $deleteTask = $('#btn btn-secondary btn-lg')
-
-$('button').click(function(){
-    $.ajax({ url: "/api/board/1",
-            success: function(result) {
-                console.log(result) } })})
+// var $deleteTask = $('#btn btn-secondary btn-lg')
+//
+// $('button').click(function(){
+//     $.ajax({ url: "/api/board/1",
+//             success: function(result) {
+//                 console.log(result) } })})
 
         //     $.ajax({    method: 'DELETE',
         //                 url: '/api/board/1',
@@ -108,10 +108,14 @@ $('button').click(function(){
 // ======================================================================
 //                      show all boards for user
 
-function getAllBoards(response) {
-    $table = "#whatever the dropdown name is"
-    tasks.id.forEach(function(task) {
+function getAllBoards(response, $table) {
+    response.forEach(function(board) {
         var $tr = $('<tr>').appendTo($table)
-        var $name = $('<td>').text(response.board.name).appendTo($tr)
+        var $name = $('<td>').text(board.name).appendTo($tr)
     })
 }
+
+$table = "#dropdown"
+$.ajax({ url: '/api/board' }).done(function(response) {
+    getAllBoards(response, $table)
+})
