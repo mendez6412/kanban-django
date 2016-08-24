@@ -30,7 +30,7 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    return render(request, 'hanabi/index.html')
+    return render(request, 'hanabi/logout.html')
 
 
 def register(request):
@@ -39,6 +39,10 @@ def register(request):
         if user_form.is_valid():
             user = user_form.save(commit=False)
             user.save()
+            new_user = authenticate(username=user_form.cleaned_data['username'],
+                                    password=user_form.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
             return HttpResponseRedirect('/')
     else:
         user_form = UserCreationForm(prefix='user')

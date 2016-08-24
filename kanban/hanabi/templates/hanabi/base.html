@@ -27,7 +27,11 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><p class="navbar-text">Welcome, friend! Please <a href="#">login.</a></p></li>
+            {% if user.is_authenticated %}
+            <li><p class="navbar-text">Welcome, {{ user.username }}! | <a href="/logout">Logout</a></p></li>
+            {% else %}
+            <li><p class="navbar-text">Welcome, friend! | <a href="/login">Login</a></p></li>
+            {% endif %}
           </ul>
         </div>
       </div>
