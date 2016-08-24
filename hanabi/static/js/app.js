@@ -1,6 +1,5 @@
 
 function onBoardFetched(tasks, $table) {
-    // console.log(response)
     tasks.forEach(function(task) {
         var $tr = $('<tr>').appendTo($table)
         var $name = $('<td>').text(task.user_story).appendTo($tr)
@@ -48,29 +47,59 @@ $.ajax({ url: '/api/board/1' }).done(function(response) {
     onBoardFetched(getDones(response), $done)
 })
 
+// ======================================================================
+//                              Board DROP DOWN
 
-// Below code updates a board with a new name
-// $.ajax({
-//             method: 'PUT',
-//             url: '/api/board/',
-//             data: { name: $name
-//             }
-
-
-
-// var $playtest = $('#ajlink')
+// var $dropdown = $('#dropdown-menu')
 //
-// $("button").click(function() {
-//     $.ajax({
-//         url: "/api/board",
-//         success: function(result) {
-//             console.log(result)
-            // TODO: how do we even loop through tasks?
-                // for (var i = 0; i < some.length; i = i + 1)
-                //     Status.object.get(i) .... and do something with it
-                //  { output = "yo yo" + i }
-                //  console.log(output)
-            // TODO: get all unique statuses from tasks, in sorted order
-//         }
-//     });
-// });
+//
+// $.ajax({ url: '/api/board/' }).done(function(response) {
+//     response.task_set.filter(function(task) {
+//         return task.board_users.user_id == 1;
+//     })
+// })
+
+
+
+//
+// ======================================================================
+//                  adds a new item to a task
+
+
+var $addNewTask = $('#btn btn-primary btn-lg')
+
+$("button").click(function() {
+    $.ajax({
+        url: "/api/board/1",
+        success: function(result) {
+            console.log(result) } })})
+            // get which user, board, status
+        //     $name = "jump up and down"
+        //     $weight = 11
+        //     $.ajax({    method: 'PUT',
+        //                 url: '/api/board/1',
+        //                 data: { Task.user_story: $name, Task.weight: $weight }
+        //             })
+        //         }
+        //     })
+        // }
+
+
+//
+// ======================================================================
+//               DELETE a task on a card
+
+var $deleteTask = $('#btn btn-secondary btn-lg')
+
+$('button').click(function(){
+    $.ajax({ url: "/api/board/1",
+            success: function(result) {
+                console.log(result) } })})
+
+        //     $.ajax({    method: 'DELETE',
+        //                 url: '/api/board/1',
+        //                 data: { Task.id }
+        //             })
+        //         }
+        //     })
+        // }
