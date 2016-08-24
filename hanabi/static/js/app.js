@@ -40,7 +40,7 @@ var $blocked = $('#blocked')
 var $done = $('#done')
 
 
-$.ajax({ url: '/api/board/1' }).done(function(response) {
+$.ajax({ url: '/api/board' }).done(function(response) {
     onBoardFetched(getTodos(response), $todo)
     onBoardFetched(getDoings(response), $doing)
     onBoardFetched(getBlockings(response), $blocked)
@@ -66,23 +66,22 @@ $.ajax({ url: '/api/board/1' }).done(function(response) {
 //                  adds a new item to a task
 
 
-var $addNewTask = $('#btn btn-primary btn-lg')
+// var $addNewTask = $('#btn btn-primary btn-lg')
 
-$("button").click(function() {
-    $.ajax({
-        url: "/api/board/1",
-        success: function(result) {
-            console.log(result) } })})
-            // get which user, board, status
-        //     $name = "jump up and down"
-        //     $weight = 11
-        //     $.ajax({    method: 'PUT',
-        //                 url: '/api/board/1',
-        //                 data: { Task.user_story: $name, Task.weight: $weight }
-        //             })
-        //         }
-        //     })
-        // }
+// $("button").click(function() {
+//     $.ajax({
+//         url: "/api/board/1",
+//         success: function(result) {
+//             // get which user, board, status
+//             $temp_name = "jump up and down"
+//             $temp_weight = 11
+//             $.ajax({    method: 'POST',
+//                         url: '/api/board/1',
+//                         data: {task.user_story: $temp_name, task.weight: $temp_weight}
+//                     })
+//                 }
+//             })
+//         })
 
 
 //
