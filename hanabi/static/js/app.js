@@ -103,3 +103,16 @@ $('button').click(function(){
         //         }
         //     })
         // }
+
+
+//
+// ======================================================================
+//                      show all boards for user
+
+function getAllBoards(response) {
+    $table = "#whatever the dropdown name is"
+    tasks.id.forEach(function(task) {
+        var $tr = $('<tr>').appendTo($table)
+        var $name = $('<td>').text(response.board.name).appendTo($tr)
+    })
+}
