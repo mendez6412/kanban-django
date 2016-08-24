@@ -1,0 +1,23 @@
+{% extends 'hanabi/base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row">
+  <div class="col-md-8">
+  <form method="post" action="">
+  {% csrf_token %}
+  <fieldset>
+    <legend>Register</legend>
+    <div class="form-group">
+      {{ userform.as_p }}
+    </div>
+    <!-- <div class="form-group">
+      {{ raterform.as_p }}
+    </div> -->
+  <button type="submit" class="btn btn-default">Submit</button>
+  </fieldset>
+  </form>
+</div>
+</div>
+</div>
+
+{% endblock %}
