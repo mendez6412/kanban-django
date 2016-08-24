@@ -1,5 +1,4 @@
 import os
-from .secrets import SECRET_KEY
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -15,6 +14,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # Application definition
 
