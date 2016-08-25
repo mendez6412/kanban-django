@@ -16,9 +16,17 @@ def board(request, board_id):
     print(board_id)
     bid = board_id
     context = {
-    'board_id': bid
+        'board_id': bid
     }
     return render(request, 'hanabi/board.html', context)
+
+
+def learn(request):
+    return render(request, 'hanabi/learn.html')
+
+
+def boards(request):
+    return render(request, 'hanabi/boards.html')
 
 
 def signin(request):
