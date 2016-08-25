@@ -24,7 +24,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class BoardSerializer(serializers.ModelSerializer):
-    task_set = TaskSerializer(many=True)
+    task_set = TaskSerializer(many=True, read_only=True)
 
     class Meta:
         model = Board
