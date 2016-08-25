@@ -117,3 +117,19 @@ $saveBoard.click(function(){
             console.log("WOW")
           }});
 })
+
+
+var $addTODO = $("#addTODO")
+var $addDoing = $("#addDoing")
+var $addBlocked = $("#addBlocked")
+var $addDone = $("#addDone")
+
+
+//* TODO: Create TaskViewset *//
+$addTODO.click(function(){
+  console.log("hello")
+  $.ajax({url:"/api/board/" + $testid + "/",
+          method:'POST',
+          data: {'task_set': {"user_story": "testingstuff", "weight": 7, "board": $testid, "status": 1}}
+        })
+})

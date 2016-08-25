@@ -24,8 +24,18 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class BoardSerializer(serializers.ModelSerializer):
-    task_set = TaskSerializer(many=True, read_only=True)
+    task_set = TaskSerializer(many=True)
 
     class Meta:
         model = Board
         fields = ('id', 'name', 'users', 'task_set')
+
+    def create(self, validated_data):
+        temp = Board(name=validated_data['name'])
+        temp.save()
+        temp.users.add(validated_data['users'][0])
+        temp.save()
+        return temp
+
+    # def update(self, validated_data):
+    #     task_set = Task()
