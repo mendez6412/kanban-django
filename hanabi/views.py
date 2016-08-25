@@ -12,6 +12,11 @@ def index(request):
     return render(request, 'hanabi/index.html')
 
 
+def learn(request):
+    return render(request, 'hanabi/learn.html')
+
+
+
 def boards(request):
     return render(request, 'hanabi/boards.html')
 
