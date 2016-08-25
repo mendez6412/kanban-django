@@ -6,6 +6,7 @@ function onBoardFetched(tasks, $table) {
     })
 }
 
+
 function getTodos(response) {
     return response.task_set.filter(function(task) {
         return task.status.name == 'TODO';
@@ -33,89 +34,42 @@ function getDones(response) {
     })
 }
 
-
 var $todo = $('#todo')
 var $doing = $('#doing')
 var $blocked = $('#blocked')
 var $done = $('#done')
 
-
-$.ajax({ url: '/api/board/1' }).done(function(response) {
-    onBoardFetched(getTodos(response), $todo)
-    onBoardFetched(getDoings(response), $doing)
-    onBoardFetched(getBlockings(response), $blocked)
-    onBoardFetched(getDones(response), $done)
-})
-
-// ======================================================================
-//                              Board DROP DOWN
-
-// var $dropdown = $('#dropdown-menu')
-//
-//
-// $.ajax({ url: '/api/board/' }).done(function(response) {
-//     response.task_set.filter(function(task) {
-//         return task.board_users.user_id == 1;
-//     })
-// })
-
-
-
-//
-// ======================================================================
-//                  adds a new item to a task
-
-
-// var $addNewTask = $('#btn btn-primary btn-lg')
-
-// $("button").click(function() {
-//     $.ajax({
-//         url: "/api/board/1",
-//         success: function(result) {
-//             // get which user, board, status
-//             $temp_name = "jump up and down"
-//             $temp_weight = 11
-//             $.ajax({    method: 'POST',
-//                         url: '/api/board/1',
-//                         data: {task.user_story: $temp_name, task.weight: $temp_weight}
-//                     })
-//                 }
-//             })
-//         })
-
-
-//
-// ======================================================================
-//               DELETE a task on a card
-
-// var $deleteTask = $('#btn btn-secondary btn-lg')
-//
-// $('button').click(function(){
-//     $.ajax({ url: "/api/board/1",
-//             success: function(result) {
-//                 console.log(result) } })})
-
-        //     $.ajax({    method: 'DELETE',
-        //                 url: '/api/board/1',
-        //                 data: { Task.id }
-        //             })
-        //         }
-        //     })
-        // }
-
-
-//
-// ======================================================================
-//                      show all boards for user
-
-function getAllBoards(response, $table) {
+function onDropdown(response, $drop) {
     response.forEach(function(board) {
-        var $tr = $('<tr>').appendTo($table)
-        var $name = $('<td>').text(board.name).appendTo($tr)
+        var $li = $('<li>').appendTo($drop)
+        var $a = $('<a>').attr('href', '/board/' + board.id).attr('id', board.id).appendTo($li)
+        var $p = $('<p>').text(board.name).appendTo($a)
     })
 }
 
-$table = "#dropdown"
-$.ajax({ url: '/api/board' }).done(function(response) {
-    getAllBoards(response, $table)
+function getBoards(response) {
+    return response.results.filter(function(result) {
+      return result.name, result.id
+    })
+}
+
+function getResult(response) {
+  return response.results.filter(function(result) {
+    return result;
+  })
+}
+
+var $drop = $("#dropdown")
+$.ajax({ url: '/api/board/' }).done(function(response) {
+  onDropdown(getBoards(response), $drop);
+})
+
+var $activepage = $(".container")[1]
+var $testid = $activepage.id
+
+$.ajax({ url: '/api/board/' + $testid }).done(function(response) {
+  onBoardFetched(getTodos(response), $todo)
+  onBoardFetched(getDoings(response), $doing)
+  onBoardFetched(getBlockings(response), $blocked)
+  onBoardFetched(getDones(response), $done)
 })

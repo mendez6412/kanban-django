@@ -12,8 +12,13 @@ def index(request):
     return render(request, 'hanabi/index.html')
 
 
-def boards(request):
-    return render(request, 'hanabi/boards.html')
+def board(request, board_id):
+    print(board_id)
+    bid = board_id
+    context = {
+    'board_id': bid
+    }
+    return render(request, 'hanabi/board.html', context)
 
 
 def signin(request):
