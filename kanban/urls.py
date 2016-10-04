@@ -6,6 +6,7 @@ from hanabi import views
 
 router = routers.DefaultRouter()
 router.register(r'board', views.BoardViewSet, 'Board')
+router.register(r'task', views.TaskViewSet, 'Task')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

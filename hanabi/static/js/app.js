@@ -127,9 +127,9 @@ var $addDone = $("#addDone")
 
 //* TODO: Create TaskViewset *//
 $addTODO.click(function(){
-  console.log("hello")
+  console.log($testid)
   $.ajax({url:"/api/board/" + $testid + "/",
-          method:'POST',
+          method:'post',
           data: {'task_set': {"user_story": "testingstuff", "weight": 7, "board": $testid, "status": 1}}
         })
 })

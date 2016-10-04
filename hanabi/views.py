@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Board, Status, Task, User
-from .serializers import BoardSerializer
+from .serializers import BoardSerializer, TaskSerializer
 from rest_framework import viewsets
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
@@ -25,8 +25,8 @@ def learn(request):
     return render(request, 'hanabi/learn.html')
 
 
-def boards(request):
-    return render(request, 'hanabi/boards.html')
+# def boards(request):
+#     return render(request, 'hanabi/boards.html')
 
 
 def signin(request):
@@ -37,6 +37,8 @@ def signin(request):
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/')
+        else:
+            return HttpResponseRedirect('/login')
     else:
         return render(request, 'hanabi/login.html')
 
@@ -67,9 +69,14 @@ def register(request):
 
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
+    queryset = Board.objects.all()
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     queryset = Board.objects.filter(users=user)
+    #
+    #     return queryset
 
-    def get_queryset(self):
-        user = self.request.user
-        queryset = Board.objects.filter(users=user)
 
-        return queryset
+class TaskViewSet(viewsets.ModelViewSet):
+    serializer_class = TaskSerializer
+    queryset = Task.objects.all()

@@ -10,7 +10,7 @@ class StatusSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    status = StatusSerializer()
+    # status = StatusSerializer()
 
     class Meta:
         model = Task
