@@ -6,5 +6,5 @@
   - requirements.txt: Installs needed to successfully recreate our system
 
 # Notes
-  - Version Deployed to Heroku: Data Displayable
-  - Version in Development: Editable Data via AJAX
+  - Version Deployed to Heroku: Data Displayable | http://hanabi-kanban.herokuapp.com/
+  - Version in Development: Editable Data via AJAX | http://hanabikanbantest.herokuapp.com/
